@@ -1,4 +1,4 @@
-project_name
+Image Colorization
 ==============================
 
 A short description of the project.
@@ -55,3 +55,8 @@ Project Organization
 --------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+
+### Version 1:
+
+- im gonna skip logging for now and rather use print statements

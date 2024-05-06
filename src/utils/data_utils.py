@@ -75,3 +75,26 @@ def show_images_from_paths(image_paths:list[str],image_size=64,cols=4,row_size=5
             img = np.concatenate([BW,img],axis=1)
         plt.imshow(img.astype("uint8"))
     plt.show()
+
+
+def see_batch(L_batch,AB_batch,show_L=False,cols=4,row_size=5,col_size=5,title=None):
+    n = L_batch.shape[0]
+    rows = math.ceil(n/cols)
+    fig = plt.figure(figsize=(col_size*cols,row_size*rows))
+    if title:
+        plt.title(title)
+    plt.axis("off")
+    
+    for i in range(n):
+        fig.add_subplot(rows,cols,i+1)
+        L,AB = L_batch[i],AB_batch[i]
+        L,AB = rescale_L(L), rescale_AB(AB)
+#         print(L.shape,AB.shape)
+        img = np.concatenate([L,AB],axis=-1)
+        img = cv2.cvtColor(img,cv2.COLOR_LAB2RGB)*255
+#         print(img.min(),img.max())
+        if show_L:
+            L = np.tile(L,(1,1,3))/100*255
+            img = np.concatenate([L,img],axis=1)
+        plt.imshow(img.astype("uint8"))
+    plt.show()

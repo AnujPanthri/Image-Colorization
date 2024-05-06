@@ -1,0 +1,14 @@
+# mandatory
+task: simple_regression_colorization
+dataset: forests
+model: model_v1
+
+# common parameters
+seed: 324
+train_size: 0.8
+image_size: 224
+shuffle: False
+
+# training related
+batch_size: 16
+epochs: 10

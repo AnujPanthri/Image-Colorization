@@ -1,14 +1,14 @@
 import tensorflow as tf
 from src.utils.data_utils import scale_L,scale_AB,rescale_AB,rescale_L
-from src.utils.config_loader import config
+from src.utils.config_loader import config,constants
 from pathlib import Path
 from glob import glob
 import sklearn.model_selection
 from skimage.color import rgb2lab, lab2rgb
 
 def get_datasets():
-    trainval_dir = config.PROCESSED_DATASET_DIR / Path("trainval/")
-    test_dir = config.PROCESSED_DATASET_DIR / Path("test/")
+    trainval_dir = constants.PROCESSED_DATASET_DIR / Path("trainval/")
+    test_dir = constants.PROCESSED_DATASET_DIR / Path("test/")
 
     trainval_paths = glob(str(trainval_dir/Path("*")))
     test_paths = glob(str(test_dir/Path("*")))

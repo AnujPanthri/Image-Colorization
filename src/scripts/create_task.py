@@ -5,9 +5,9 @@ def create_file(file_path,file_content):
     with open(file_path,"w") as f:
         f.write(file_content)
             
-def create_data(data_dir,dataset_name,sub_task_dir):
-    # call src/sub_task/scripts/create_dataset.py dataset_name
-    os.system(f"python {sub_task_dir}/scripts/create_dataset.py {dataset_name}")
+def create_data(data_dir,dataset_name,task_dir):
+    # call src/task/scripts/create_dataset.py dataset_name
+    os.system(f"python {task_dir}/scripts/create_dataset.py {dataset_name}")
 
     register_datasets_file_path = os.path.join(data_dir,"register_datasets.py")
     create_file(register_datasets_file_path,
@@ -19,7 +19,7 @@ datasets = ["{dataset_name}"]
 
 
 
-def create_model(model_dir:str, model_name:str, sub_task_dir:str):
+def create_model(model_dir:str, model_name:str, task_dir:str):
     base_model_interface_path = os.path.join(model_dir,"base_model_interface.py")
     
     create_file(base_model_interface_path,
@@ -27,26 +27,34 @@ def create_model(model_dir:str, model_name:str, sub_task_dir:str):
 from abc import ABC, abstractmethod
 
 # BaseModel Abstract class
-# all the models within this sub_task must inherit this class
+# all the models within this task must inherit this class
 
 class BaseModel(ABC):
     @abstractmethod
     def train(self):
         pass
         
+    @abstractmethod
+    def evaluate(self):
+        pass
+
     @abstractmethod        
     def predict(self,inputs):
+        pass
+        
+    @abstractmethod
+    def show_results(self):
         pass
 """)
 
 
-    # call src/sub_task/scripts/create_model.py model_name
-    os.system(f"python {sub_task_dir}/scripts/create_model.py {model_name}")
+    # call src/task/scripts/create_model.py model_name
+    os.system(f"python {task_dir}/scripts/create_model.py {model_name}")
     
 
     register_models_path = os.path.join(model_dir,"register_models.py")
     create_file(register_models_path,
-f"""# register models of this sub_task here
+f"""# register models of this task here
 models = ["{model_name}"]
 """)
 
@@ -73,7 +81,7 @@ models = ["{model_name}"]
 """)
     
 
-def create_scripts(scripts_dir,sub_task):
+def create_scripts(scripts_dir,task):
     create_dataset_path = os.path.join(scripts_dir,"create_dataset.py")
     create_file(create_dataset_path,
 f"""import os,shutil
@@ -86,7 +94,7 @@ def create_file(file_path,file_content):
 def create_dataset(args):
     dataset_name = args.name
     force_flag = args.force
-    datasets_dir = os.path.join('src','{sub_task}','data','datasets')
+    datasets_dir = os.path.join('src','{task}','data','datasets')
     
     os.makedirs(datasets_dir,exist_ok=True)
     dataset_path = os.path.join(datasets_dir,dataset_name+".py")
@@ -157,7 +165,7 @@ def create_file(file_path,file_content):
 def create_model(args):
     model_name = args.name
     force_flag = args.force
-    models_dir = os.path.join('src','{sub_task}','model',"models")
+    models_dir = os.path.join('src','{task}','model',"models")
     os.makedirs(models_dir,exist_ok=True)
     model_path = os.path.join(models_dir,model_name+".py")
 
@@ -173,7 +181,7 @@ def create_model(args):
     
     model_name_camel_case = "".join([part.capitalize() for part in model_name.split("_")])
     create_file(model_path,
-f\"\"\"from src.{sub_task}.model.base_model_interface import BaseModel
+f\"\"\"from src.{task}.model.base_model_interface import BaseModel
 
 class Model(BaseModel):
     def train(self):
@@ -197,35 +205,35 @@ if __name__=="__main__":
     
     
 
-def create_sub_task(args):
-    """Used to create sub_task within our main task"""
-    sub_task = args.sub_task
+def create_task(args):
+    """Used to create task within our main task"""
+    task = args.task
     force_flag = args.force
     dataset_name = "dataset1"
     model_name = "model1"
 
-    sub_task_dir = os.path.join('src',sub_task)
-    data_dir = os.path.join(sub_task_dir,'data')
-    model_dir = os.path.join(sub_task_dir,'model')
-    scripts_dir = os.path.join(sub_task_dir,"scripts")
+    task_dir = os.path.join('src',task)
+    data_dir = os.path.join(task_dir,'data')
+    model_dir = os.path.join(task_dir,'model')
+    scripts_dir = os.path.join(task_dir,"scripts")
     # print(scripts_dir)
-    # deleted old sub_task if force flag exists and sub_task already exists
-    if os.path.exists(sub_task_dir):
+    # deleted old task if force flag exists and task already exists
+    if os.path.exists(task_dir):
         if force_flag:
-            print("Replacing existing sub_task:",sub_task)
-            shutil.rmtree(sub_task_dir)
+            print("Replacing existing task:",task)
+            shutil.rmtree(task_dir)
         else:
-            print(f"{sub_task} already exists, use --force flag if you want to reset it to default")
+            print(f"{task} already exists, use --force flag if you want to reset it to default")
             exit()
 
     # create empty folders
-    os.makedirs(sub_task_dir,exist_ok=True)
+    os.makedirs(task_dir,exist_ok=True)
     os.makedirs(data_dir,exist_ok=True)
     os.makedirs(model_dir,exist_ok=True)
     os.makedirs(scripts_dir,exist_ok=True)
 
     # make config validator file
-    validate_config_file_path = os.path.join(sub_task_dir,"validate_config.py")
+    validate_config_file_path = os.path.join(task_dir,"validate_config.py")
     create_file(validate_config_file_path,
 '''# from cerberus import Validator
 
@@ -252,22 +260,22 @@ schema = {
 ''')
     
     # make scripts files
-    create_scripts(scripts_dir,sub_task)
+    create_scripts(scripts_dir,task)
 
     # make data files
-    create_data(data_dir,dataset_name,sub_task_dir)
+    create_data(data_dir,dataset_name,task_dir)
 
     # make model files
-    create_model(model_dir,model_name,sub_task_dir)
+    create_model(model_dir,model_name,task_dir)
 
     
 def main():
-    parser = argparse.ArgumentParser(description="Create blueprint sub_task")
-    parser.add_argument('sub_task',type=str,help="sub_task of project (e.g., simple_regression_colorization)")
-    parser.add_argument("--force",action="store_true",help="forcefully replace old existing sub_task to default",default=False)
+    parser = argparse.ArgumentParser(description="Create blueprint task")
+    parser.add_argument('task',type=str,help="task of project (e.g., simple_regression_colorization)")
+    parser.add_argument("--force",action="store_true",help="forcefully replace old existing task to default",default=False)
     args = parser.parse_args()
 
-    create_sub_task(args)
+    create_task(args)
 
 if __name__=="__main__":
     main()

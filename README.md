@@ -74,6 +74,8 @@ An deep learning based Image Colorization project.
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
 
+Kaggle API docs:- https://github.com/Kaggle/kaggle-api/blob/main/docs/README.md
+
 ### Version 1:
 
 - im gonna skip logging for now and rather use print statements

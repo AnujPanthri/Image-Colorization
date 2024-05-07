@@ -1,6 +1,5 @@
 {
   "id": "anujpanthri/train-image-colorization",
-  "id_no":345,
   "title": "training-image-colorization-model",
   "code_file": "train-image-colorization.ipynb",
   "language": "python",

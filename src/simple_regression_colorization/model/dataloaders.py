@@ -19,7 +19,7 @@ def get_datasets():
 
     train_paths,val_paths = sklearn.model_selection.train_test_split(trainval_paths,
                                                                     train_size=0.8,
-                                                                    random_state=324)
+                                                                    random_state=config.seed)
     
     print("train|val|test:",len(train_paths),"|",len(val_paths),"|",len(test_paths))
     
@@ -53,7 +53,7 @@ def load_img(img_path):
     
 def get_tf_ds(image_paths,bs=8,shuffle=False,is_val=False):
     ds = tf.data.Dataset.from_tensor_slices(image_paths)
-    if shuffle:   ds = ds.shuffle(len(image_paths))
+    if shuffle:   ds = ds.shuffle(len(image_paths),seed=config.seed)
     ds = ds.map(load_img,num_parallel_calls=tf.data.AUTOTUNE)
     ds = ds.batch(bs,num_parallel_calls=tf.data.AUTOTUNE,drop_remainder=not is_val)
     

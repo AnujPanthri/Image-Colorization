@@ -3,6 +3,7 @@ import argparse
 from comet_ml import Experiment
 from src.utils.config_loader import Config
 from src.utils import config_loader
+from src.utils.data_utils import print_title
 from src.utils.script_utils import validate_config
 import importlib
 from pathlib import Path
@@ -47,6 +48,8 @@ def train(args):
     if "LOCAL_SYSTEM" not in os.environ:
         experiment.log_model(f"{config.task}_{config.dataset}_{config.model}",model_save_path)
 
+    # evaluate model
+    print_title("\nEvaluating Model")
     metrics = model.evaluate()
     print("Model Evaluation Metrics:",metrics)
     

@@ -24,7 +24,8 @@ def download_personal_hf_dataset(name):
 
 def unzip_file(file_path,destination_dir):
     """unzips file to destination_dir"""
-    shutil.rmtree(destination_dir)
+    if os.path.exists(destination_dir):
+        shutil.rmtree(destination_dir)
     os.makedirs(destination_dir)
     with ZipFile(file_path,"r") as zip:
         zip.extractall(destination_dir)

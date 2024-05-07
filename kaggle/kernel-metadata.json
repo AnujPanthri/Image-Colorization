@@ -1,0 +1,16 @@
+{
+  "id": "anujpanthri/train-image-colorization",
+  "id_no":345,
+  "title": "training-image-colorization-model",
+  "code_file": "train-image-colorization.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "false",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

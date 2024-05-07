@@ -2,7 +2,7 @@ from src.utils.config_loader import constants
 from huggingface_hub import snapshot_download
 from zipfile import ZipFile
 import numpy as np
-import shutil
+import os,shutil
 import matplotlib.pyplot as plt
 import cv2
 import math
@@ -25,6 +25,7 @@ def download_personal_hf_dataset(name):
 def unzip_file(file_path,destination_dir):
     """unzips file to destination_dir"""
     shutil.rmtree(destination_dir)
+    os.makedirs(destination_dir)
     with ZipFile(file_path,"r") as zip:
         zip.extractall(destination_dir)
 

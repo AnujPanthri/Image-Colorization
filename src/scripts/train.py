@@ -1,4 +1,4 @@
-import os
+import os,shutil
 import argparse
 from comet_ml import Experiment
 from src.utils.config_loader import Config
@@ -28,6 +28,8 @@ def train(args):
     os.makedirs(model_dir,exist_ok=True)
     model_save_path = os.path.join(model_dir,"model.weights.h5")
     
+    # save config to exported model folder
+    shutil.copy(config_file_path,model_dir)
 
     experiment = Experiment(
         api_key=os.environ["COMET_API_KEY"],

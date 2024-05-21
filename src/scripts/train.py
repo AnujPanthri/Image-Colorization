@@ -48,7 +48,7 @@ def train(args):
     
     # log model to comet
     if "LOCAL_SYSTEM" not in os.environ:
-        experiment.log_model(f"{config.task}_{config.dataset}_{config.model}",model_save_path)
+        experiment.log_model(f"{config.task}_{config.dataset}_{config.model}",model_dir)
 
     # evaluate model
     print_title("\nEvaluating Model")

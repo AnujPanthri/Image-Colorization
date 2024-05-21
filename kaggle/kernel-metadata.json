@@ -1,11 +1,11 @@
 {
   "id": "anujpanthri/train-image-colorization",
-  "title": "training-image-colorization-model",
+  "title": "Train Image Colorization",
   "code_file": "train-image-colorization.ipynb",
   "language": "python",
   "kernel_type": "notebook",
   "is_private": "true",
-  "enable_gpu": "true",
+  "enable_gpu": "false",
   "enable_tpu": "false",
   "enable_internet": "true",
   "dataset_sources": [],

@@ -1,12 +1,12 @@
 import os
 import argparse
-from src.utils.config_loader import Config
+from src.utils.config_loader import Config,constants
 from src.utils import config_loader
 from src.utils.script_utils import validate_config
 import importlib
 
 
-def visualize_dataset(args):
+def visualize_results(args):
     config_file_path = args.config_file
     config = Config(config_file_path)
 
@@ -17,7 +17,7 @@ def visualize_dataset(args):
     config_loader.config = config
 
     # now load model and visualize the results
-    model_dir = os.path.join("models",config.task,config.model)
+    model_dir = constants.ARTIFACT_MODEL_DIR
     model_save_path = os.path.join(model_dir,"model.weights.h5")
 
     if not os.path.exists(model_save_path):
@@ -32,10 +32,10 @@ def visualize_dataset(args):
     
 
 def main():
-    parser = argparse.ArgumentParser(description="Prepare dataset based on config yaml file")
+    parser = argparse.ArgumentParser(description="visualize results based on config yaml file and trained model")
     parser.add_argument("config_file",type=str)
     args = parser.parse_args()
-    visualize_dataset(args)
+    visualize_results(args)
 
 if __name__=="__main__":
     main()

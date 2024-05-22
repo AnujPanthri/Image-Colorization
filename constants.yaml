@@ -1,3 +1,8 @@
 RAW_DATASET_DIR: data/raw/
 INTERIM_DATASET_DIR: data/interim/
 PROCESSED_DATASET_DIR: data/processed/
+
+
+ARTIFACT_MODEL_DIR: artifacts/model/
+ARTIFACT_DATASET_VISUALIZATION_DIR: artifacts/dataset/
+ARTIFACT_RESULT_VISUALIZATION_DIR: artifacts/result/

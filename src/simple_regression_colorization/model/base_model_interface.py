@@ -68,17 +68,32 @@ class BaseModel(ABC):
         L_batch,AB_batch = next(iter(self.train_ds))
         L_batch = L_batch.numpy()
         AB_pred = self.model.predict(L_batch,verbose=0)
-        see_batch(L_batch,AB_pred,title="Train dataset Results")
+        see_batch(L_batch,
+                  AB_pred,
+                  title="Train dataset Results",
+                  save = True,
+                  label = "train",
+                  )
         
         L_batch,AB_batch = next(iter(self.val_ds))
         L_batch = L_batch.numpy()
         AB_pred = self.model.predict(L_batch,verbose=0)
-        see_batch(L_batch,AB_pred,title="Val dataset Results")
+        see_batch(L_batch,
+                  AB_pred,
+                  title="Val dataset Results",
+                  save = True,
+                  label = "val",
+                  )
         
         L_batch,AB_batch = next(iter(self.test_ds))
         L_batch = L_batch.numpy()
         AB_pred = self.model.predict(L_batch,verbose=0)
-        see_batch(L_batch,AB_pred,title="Test dataset Results")
+        see_batch(L_batch,
+                  AB_pred,
+                  title="Test dataset Results",
+                  save = True,
+                  label = "test",
+                  )
         
 
     @abstractmethod

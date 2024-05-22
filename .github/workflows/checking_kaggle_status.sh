@@ -4,10 +4,10 @@
 
 check_status(){
     COMMAND="kaggle k status $1"
+    echo "EXECUTING: $COMMAND"
     while true
     do
-        echo "EXECUTING: $COMMAND"
-        sleep 2s
+        sleep 30s
         KERNEL_STATUS=$($COMMAND)
         echo "OUTPUT: $KERNEL_STATUS"
         # okay now try to exit or raise error
@@ -15,7 +15,7 @@ check_status(){
             # error
             echo "ERROR"
             exit 1
-            
+
         elif [[ $KERNEL_STATUS == *"has status \"complete\""* ]]; then
             # success
             echo "Notebook finished running !"

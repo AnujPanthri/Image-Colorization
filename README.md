@@ -83,3 +83,15 @@ Kaggle API docs:- https://github.com/Kaggle/kaggle-api/blob/main/docs/README.md
 ### Version 1:
 
 - im gonna skip logging for now and rather use print statements
+
+
+## Dataset
+
+![]("outputs/artifacts/dataset/trainval_image.png")
+![]("outputs/artifacts/dataset/test_image.png")
+
+## Result
+
+![]("outputs/artifacts/result/train_image.png")
+![]("outputs/artifacts/result/val_image.png")
+![]("outputs/artifacts/result/test_image.png")

@@ -12,10 +12,16 @@ def visualize():
     choosen_paths = np.random.choice(image_paths,n)
     show_images_from_paths(choosen_paths,
                            title="sample of train_val dataset",
-                           image_size=config.image_size)
+                           image_size=config.image_size,
+                           save=True,
+                           label="trainval",
+                           )
 
     image_paths = glob(f"{constants.PROCESSED_DATASET_DIR}/test/*")
     choosen_paths = np.random.choice(image_paths,n)
     show_images_from_paths(choosen_paths,
                            title="sample of test dataset",
-                           image_size=config.image_size)
+                           image_size=config.image_size,
+                           save=True,
+                           label="test",
+                           )

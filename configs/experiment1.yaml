@@ -12,5 +12,5 @@ shuffle: False
 
 # training related
 batch_size: 16
-epochs: 15
-# epochs: 02
+# epochs: 15
+epochs: 02

@@ -4,19 +4,43 @@ on:
   push:
     branches:
       - train
-
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+      - outputs/
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Setup Kaggle
+        run: |
+          pip install kaggle
+          mkdir ~/.kaggle
+          echo "{\"username\":\"${{secrets.KAGGLE_USERNAME}}\",\"key\":\"${{secrets.KAGGLE_KEY}}\"}" > ~/.kaggle/kaggle.json
+          chmod 600 /home/runner/.kaggle/kaggle.json
+
       - name: Push Kaggle kernel
         run: kaggle kernels push -p kaggle/
   
       - name: Checking Kaggle Status
         run: |
-          bash .github/workflows/checking_kaggle_status.sh $KAGGLE_KERNEL_ID
+          bash .github/workflows/checking_kaggle_status.sh ${{ secrets.KAGGLE_KERNEL_ID }}
   
       - name: Download outputs
         run: |
-          kaggle k output $KAGGLE_KERNEL_ID -p outputs/
+          kaggle k output ${{ secrets.KAGGLE_KERNEL_ID }} -p outputs/ --quiet
           ls outputs/
+
+      - name: add ouputs to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit --amend --no-edit
+          git push origin train --force

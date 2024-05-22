@@ -8,26 +8,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Kaggle push
-        uses: joelhanson/kaggle-kernel-actions
-        with:
-          kaggle_username: ${{ secrets.kaggle_username }}
-          kaggle_key: ${{ secrets.kaggle_key }}
-          kernel_id: anujpanthri/train-image-colorization
-          kaggle_make_new_kernel: true
-          code_file_path: kaggle/train-image-colorization.ipynb
-          kaggle_metadata_path: kaggle/kernel-metadata.json
-          collect_output: true
+  
+    - name: Kaggle push
+      uses: joelhanson/kaggle-kernel-actions
+      with:
+        kaggle_username: ${{ secrets.kaggle_username }}
+        kaggle_key: ${{ secrets.kaggle_key }}
+        kernel_id: anujpanthri/train-image-colorization
+        kaggle_make_new_kernel: true
+        code_file_path: kaggle/train-image-colorization.ipynb
+        kaggle_metadata_path: kaggle/kernel-metadata.json
+        collect_output: true
 
-      - name: Download outputs
-        run: |
-          ls outputs/
-          unzip outputs/outputs.zip
-          ls outputs/outputs/
+    - name: Download outputs
+      run: |
+        ls outputs/
+        unzip outputs/outputs.zip
+        ls outputs/outputs/
 
-      - name: Download outputs
-        uses: actions/upload-artifact@v1
-        with:
-          name: outputs
-          path: outputs/outputs.zip
+    - name: Download outputs
+      uses: actions/upload-artifact@v1
+      with:
+        name: outputs
+        path: outputs/outputs.zip

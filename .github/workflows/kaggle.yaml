@@ -42,5 +42,5 @@ jobs:
       - name: add ouputs to repo
         run |
           git add .
-          git commit --ammend --no-edit
-          git push origin train
+          git commit --amend --no-edit
+          git push origin train --force

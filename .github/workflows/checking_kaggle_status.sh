@@ -16,13 +16,18 @@ check_status(){
             echo "ERROR"
             exit 1
 
+        elif [[ $KERNEL_STATUS == *"has status \"running\""* ]]; then
+            echo "Notebook still running on kaggle..."
+
         elif [[ $KERNEL_STATUS == *"has status \"complete\""* ]]; then
             # success
             echo "Notebook finished running !"
             exit 0
-        
+
         else
-            echo "Notebook still running on kaggle..."
+            # error
+            echo "ERROR"
+            exit 1
         fi
     done
 

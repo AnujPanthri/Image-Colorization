@@ -79,7 +79,7 @@ Kaggle API docs:- https://github.com/Kaggle/kaggle-api/blob/main/docs/README.md
 ## Kaggle Commands:-
 - kaggle kernels pull anujpanthri/training-image-colorization-model -p kaggle/
 - kaggle kernels push -p kaggle/
-
+- echo "{\"username\":\"$(KAGGLE_USERNAME)\",\"key\":\"$KAGGLE_KEY\"}" > kaggle.json
 ### Version 1:
 
 - im gonna skip logging for now and rather use print statements

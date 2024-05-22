@@ -7,7 +7,8 @@ model: model_v1
 seed: 324
 train_size: 0.8
 # image_size: 224
-image_size: 64
+# image_size: 64
+image_size: 128
 shuffle: False
 
 # training related

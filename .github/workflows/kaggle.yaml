@@ -4,7 +4,13 @@ on:
   push:
     branches:
       - train
-
+  
+  workflow_dispatch:
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+      - outputs/
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,3 +38,9 @@ jobs:
         run: |
           kaggle k output ${{ secrets.KAGGLE_KERNEL_ID }} -p outputs/ --quiet
           ls outputs/
+
+      - name: add ouputs to repo
+        run |
+          git add .
+          git commit --ammend --no-edit
+          git push origin train

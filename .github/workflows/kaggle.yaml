@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - train
-  
-  workflow_dispatch:
     paths-ignore:
       - .gitignore
       - README.md
@@ -41,6 +39,8 @@ jobs:
 
       - name: add ouputs to repo
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
           git commit --amend --no-edit
           git push origin train --force

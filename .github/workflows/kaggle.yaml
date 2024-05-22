@@ -40,7 +40,7 @@ jobs:
           ls outputs/
 
       - name: add ouputs to repo
-        run |
+        run: |
           git add .
           git commit --amend --no-edit
           git push origin train --force

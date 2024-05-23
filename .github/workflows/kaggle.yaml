@@ -17,6 +17,7 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+          ref: ${{ github.head_ref || github.ref_name }} 
 
       - name: Setup Kaggle
         run: |

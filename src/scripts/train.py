@@ -1,7 +1,7 @@
 import os,shutil
 import argparse
 from comet_ml import Experiment
-from src.utils.config_loader import Config,constants
+from src.utils.config_loader import Config,constants,set_seed
 from src.utils import config_loader
 from src.utils.data_utils import print_title
 from src.utils.script_utils import validate_config
@@ -17,8 +17,10 @@ def train(args):
     # validate config
     validate_config(config)
 
-    # set config globally
+    # set config globally & set seed
     config_loader.config = config
+    set_seed(config.seed)
+
 
     # now load the model
     Model = importlib.import_module(f"src.{config.task}.model.models.{config.model}").Model
@@ -55,7 +57,7 @@ def train(args):
     # log model to comet
     if "LOCAL_SYSTEM" not in os.environ:
         if experiment:
-            experiment.log_model(f"{config.task}_{config.dataset}_{config.model}",model_dir)
+            experiment.log_model(f"model",model_dir)
         
     # evaluate model
     print_title("\nEvaluating Model")

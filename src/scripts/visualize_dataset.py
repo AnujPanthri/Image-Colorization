@@ -1,8 +1,9 @@
 import argparse
-from src.utils.config_loader import Config
+from src.utils.config_loader import Config,set_seed
 from src.utils import config_loader
 from src.utils.script_utils import validate_config
 import importlib
+import random
 
 
 def visualize_dataset(args):
@@ -12,8 +13,9 @@ def visualize_dataset(args):
     # validate config
     validate_config(config)
 
-    # set config globally
+    # set config globally and set seed
     config_loader.config = config
+    set_seed(config.seed)
 
     # now visualize the dataset
     visualize_fn = importlib.import_module(f"src.{config.task}.data.visualize_dataset").visualize

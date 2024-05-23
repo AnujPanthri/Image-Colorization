@@ -1,6 +1,6 @@
 import os
 import argparse
-from src.utils.config_loader import Config,constants
+from src.utils.config_loader import Config,constants,set_seed
 from src.utils import config_loader
 from src.utils.script_utils import validate_config
 import importlib
@@ -13,8 +13,9 @@ def visualize_results(args):
     # validate config
     validate_config(config)
 
-    # set config globally
+    # set config globally & set seed
     config_loader.config = config
+    set_seed(config.seed)
 
     # now load model and visualize the results
     model_dir = constants.ARTIFACT_MODEL_DIR

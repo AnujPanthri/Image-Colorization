@@ -58,9 +58,9 @@ class BaseModel(ABC):
 
     def predict_colors(self,L_batch):
         AB_batch = self.predict(L_batch)
-        colored_batch = np.concatenate([L_batch,rescale_AB(AB_batch)],axis=-1)
+        colored_batch = np.concatenate([L_batch,AB_batch],axis=-1)
         colored_batch = lab2rgb(colored_batch) * 255
-        return colored_batch
+        return colored_batch.astype("uint8")
 
     def show_results(self):
         self.prepare_data()

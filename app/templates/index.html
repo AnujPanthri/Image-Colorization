@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Colorization</title>
+    <link rel="stylesheet" href="static/style.css"/>
+    <script src="static/script.js" defer></script>
+    <script src="https://www.marvinj.org/releases/marvinj-0.8.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Color Black and White Images</h1>
+    </header>
+    <main>
+        <div class="group">
+            <div class="container">
+                <img id="original_img" onclick="image_file_input.click()"/>
+                <input id="image_file_input" type="file" accept="image/*" />
+                <span class="container__label">Original Image</span>
+            </div>
+            <div class="container">
+                <img id="result_img" />
+                <span class="container__label">Predicted Image</span>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>
+            made with passion by 
+            <a href="https://github.com/AnujPanthri/Image-Colorization/">Anuj Panthri</a>
+            |
+            trained using 
+            <a href="/config">config.yaml</a>
+        </p>
+    </footer>
+</body>
+</html>

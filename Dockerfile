@@ -16,7 +16,7 @@ RUN ls -lh
 # RUN ls -lh
 
 RUN --mount=type=secret,id=COMET_API_KEY,mode=0444,required=true \
-    python3 download_model_comet.py --key $(cat /run/secrets/COMET_API_KEY) --version 1.0.0
+    python3 download_model_comet.py --key $(cat /run/secrets/COMET_API_KEY) --version 1.0.1
 
 RUN chmod g+w /app
 CMD python3 app/app.py

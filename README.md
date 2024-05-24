@@ -1,3 +1,16 @@
+---
+title: Image Colorization
+emoji: 🐢
+colorFrom: purple
+colorTo: yellow
+sdk: docker
+pinned: false
+license: apache-2.0
+app_port: 5000
+---
+
+hugging face config
+
 ## Image Colorization
 ==============================
 
@@ -80,6 +93,15 @@ Kaggle API docs:- https://github.com/Kaggle/kaggle-api/blob/main/docs/README.md
 - kaggle kernels pull anujpanthri/training-image-colorization-model -p kaggle/
 - kaggle kernels push -p kaggle/
 - echo "{\"username\":\"$KAGGLE_USERNAME\",\"key\":\"$KAGGLE_KEY\"}" > kaggle.json
+
+## Docker Commands:-
+- docker buildx build --secret id=COMET_API_KEY,env=COMET_API_KEY -t testcontainer
+- docker run -it -p 5000:5000 -e COMET_API_KEY=$COMET_API_KEY testcontainer
+
+## Git Commands:-
+- git lfs migrate info --everything --include="*.zip,*.png,*.jpg"
+- git lfs migrate import --everything --include="*.zip,*.png,*.jpg"
+
 ### Version 1:
 
 - im gonna skip logging for now and rather use print statements

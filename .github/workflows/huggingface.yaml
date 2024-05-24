@@ -1,0 +1,23 @@
+name: Push to Hugging face space
+
+on:
+  push:
+    branches:
+      - main
+    
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+          ref: main
+      
+      - name: push to hf space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git push https://anuj-panthri:$HF_TOKEN@huggingface.co/spaces/anuj-panthri/image-colorization main --force

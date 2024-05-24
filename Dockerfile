@@ -12,8 +12,8 @@ RUN pip install --ignore-installed -r requirements.txt --no-cache-dir
 RUN pip install -e .
 
 RUN ls -lh
-RUN rm -r outputs
-RUN ls -lh
+# RUN rm -r outputs
+# RUN ls -lh
 
 RUN --mount=type=secret,id=COMET_API_KEY,mode=0444,required=true \
     python3 download_model_comet.py --key $(cat /run/secrets/COMET_API_KEY) --version 1.0.0

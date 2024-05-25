@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 ---
 title: Image Colorization
 emoji: 🐢
@@ -11,6 +13,7 @@ app_port: 5000
 
 hugging face config
 
+>>>>>>> 9806df710f7850bef4ac174b66af98a07744ef4b
 ## Image Colorization
 ==============================
 

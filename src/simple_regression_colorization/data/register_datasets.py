@@ -1,4 +1,4 @@
 # register your datasets here
 
-datasets = ["forests"]
+datasets = ["forests","pascal-voc"]
 

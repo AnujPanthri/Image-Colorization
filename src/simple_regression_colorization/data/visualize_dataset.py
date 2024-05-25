@@ -8,7 +8,7 @@ import numpy as np
 
 def visualize():
     n = 16
-    image_paths = glob(f"{constants.PROCESSED_DATASET_DIR}/trainval/*")
+    image_paths = sorted(glob(f"{constants.PROCESSED_DATASET_DIR}/trainval/*"))
     choosen_paths = np.random.choice(image_paths,n,replace=False)
     show_images_from_paths(choosen_paths,
                            title="sample of train_val dataset",
@@ -17,7 +17,7 @@ def visualize():
                            label="trainval",
                            )
 
-    image_paths = glob(f"{constants.PROCESSED_DATASET_DIR}/test/*")
+    image_paths = sorted(glob(f"{constants.PROCESSED_DATASET_DIR}/test/*"))
     choosen_paths = np.random.choice(image_paths,n,replace=False)
     show_images_from_paths(choosen_paths,
                            title="sample of test dataset",

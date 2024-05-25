@@ -18,7 +18,7 @@ def get_datasets():
 
 
     train_paths,val_paths = sklearn.model_selection.train_test_split(trainval_paths,
-                                                                    train_size=0.8,
+                                                                    train_size=config.train_size,
                                                                     random_state=config.seed)
     
     print("train|val|test:",len(train_paths),"|",len(val_paths),"|",len(test_paths))

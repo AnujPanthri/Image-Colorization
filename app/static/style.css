@@ -1,0 +1,103 @@
+/* || RESET CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3em;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #333;
+
+    margin-inline: 1em;
+}
+
+h1 {
+    color: #bbb;
+}
+
+
+/* || GENERAL STYLES */
+
+header>h1 {
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.group {
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+    row-gap: 2em;
+
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.group .container {
+    width: 90%;
+    max-width:400px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.container img {
+    width:100%;
+    height:90%;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    object-fit: contain;
+
+    background-color: #222;
+    /* object-fit: cover; */
+}
+
+.container__label {
+    display: block;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+
+#image_file_input {
+    display: None
+}
+
+#original_img {
+    cursor: pointer;
+}
+
+
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    font-size: 0.9em;
+
+    margin-top: 2em;
+    padding: 0.4em 0;
+    color: #ccc;
+}
+
+footer a {
+    text-decoration: underline;
+    color: #fff;
+}

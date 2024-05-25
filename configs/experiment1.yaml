@@ -1,6 +1,6 @@
 # mandatory
 task: simple_regression_colorization
-dataset: forests
+dataset: pascal-voc
 model: model_v1
 
 # common parameters
@@ -13,6 +13,6 @@ shuffle: False
 
 # training related
 batch_size: 16
-epochs: 50
-# epochs: 20
+# epochs: 50
+epochs: 20
 # epochs: 02

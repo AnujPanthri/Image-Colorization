@@ -6,7 +6,7 @@ from glob import glob
 import sklearn.model_selection
 from skimage.color import rgb2lab, lab2rgb
 
-def get_datasets():
+def get_datasets(evaluation=False):
     trainval_dir = constants.PROCESSED_DATASET_DIR / Path("trainval/")
     test_dir = constants.PROCESSED_DATASET_DIR / Path("test/")
 
@@ -23,7 +23,11 @@ def get_datasets():
     
     print("train|val|test:",len(train_paths),"|",len(val_paths),"|",len(test_paths))
     
-    train_ds = get_tf_ds(train_paths,bs=config.batch_size,shuffle=config.shuffle)
+    train_shuffle = config.shuffle
+    if evaluation:
+        train_shuffle = False
+    
+    train_ds = get_tf_ds(train_paths,bs=config.batch_size,shuffle=train_shuffle)
     val_ds = get_tf_ds(val_paths,bs=config.batch_size,shuffle=False,is_val=True)
     test_ds = get_tf_ds(test_paths,bs=config.batch_size,shuffle=False,is_val=True)
     

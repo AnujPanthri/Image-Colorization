@@ -19,8 +19,8 @@ class BaseModel(ABC):
         if path:
             self.model.load_weights(path)
 
-    def prepare_data(self):
-        self.train_ds,self.val_ds,self.test_ds = get_datasets()
+    def prepare_data(self,evaluation=False):
+        self.train_ds,self.val_ds,self.test_ds = get_datasets(evaluation=evaluation)
 
     def train(self):
 
@@ -63,7 +63,7 @@ class BaseModel(ABC):
         return colored_batch.astype("uint8")
 
     def show_results(self):
-        self.prepare_data()
+        self.prepare_data(evaluation=True)
         
         L_batch,AB_batch = next(iter(self.train_ds))
         L_batch = L_batch.numpy()

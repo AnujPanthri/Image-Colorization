@@ -59,7 +59,7 @@ def clean_dataset():
             img = cv2.imread(image_paths[i])
             img = cv2.resize(img,[128,128])
             if not is_bw(img):
-                shutil.copy(trainval_paths[i],
+                shutil.copy(image_paths[i],
                             destination_dir)
         print("saved to:",destination_dir)
 

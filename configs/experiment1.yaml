@@ -6,13 +6,13 @@ model: model_v1
 # common parameters
 seed: 324
 train_size: 0.8
-# image_size: 224
-image_size: 64
+image_size: 224
+# image_size: 64
 # image_size: 128
-shuffle: False
+shuffle: True
 
 # training related
 batch_size: 16
-# epochs: 50
-epochs: 20
+epochs: 100
+# epochs: 20
 # epochs: 02

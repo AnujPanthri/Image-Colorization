@@ -10,8 +10,8 @@ def get_datasets():
     trainval_dir = constants.PROCESSED_DATASET_DIR / Path("trainval/")
     test_dir = constants.PROCESSED_DATASET_DIR / Path("test/")
 
-    trainval_paths = glob(str(trainval_dir/Path("*")))
-    test_paths = glob(str(test_dir/Path("*")))
+    trainval_paths = sorted(glob(str(trainval_dir/Path("*"))))
+    test_paths = sorted(glob(str(test_dir/Path("*"))))
 
     len(trainval_paths),len(test_paths)
 
